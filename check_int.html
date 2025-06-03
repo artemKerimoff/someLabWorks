@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка значения</title>
+    <style>
+        #checkBlock {
+            display: none;
+            width: 250px;
+            height: 120px;
+            background-color: #F8EFBA;
+            border: 2px solid #3B3B98;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Проверка значения</h1>
+    <div id="checkBlock">
+        <input type="text" id="inputValue" placeholder="Введите число">
+        <button id="checkButton">Проверить</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('checkBlock').style.display = 'block';
+        }, 3000);
+
+        document.getElementById('checkButton').addEventListener('click', () => {
+            const input = document.getElementById('inputValue').value;
+            const resultDiv = document.getElementById('result');
+            const checkBlock = document.getElementById('checkBlock');
+
+            checkBlock.style.display = 'none';
+
+            if (/^-?\d+$/.test(input)) {
+                resultDiv.textContent = "Является целым числом";
+            } else {
+                resultDiv.textContent = "Не является целым числом";
+            }
+        });
+    </script>
+</body>
+
+</html>

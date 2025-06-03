@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Проверка простого числа</title>
+        <meta charset="UTF-8">
+        <style>
+            .normal {
+                border: 1px solid black;
+            }   
+            .green {
+                border: 2px solid green;
+            }
+    
+            .blue {
+                border: 2px solid blue;
+            }
+    
+            .red {
+                border: 2px solid red;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <input type="text" id="chisloVvoda" class="" normal="">
+        <button id="knopkaproverki" class="normal">Проверить</button>
+        <script>
+            const poleVvoda = document.getElementById('chisloVvoda');
+            const knopka = document.getElementById('knopkaproverki');
+            function proveritProstoe(chislo) {
+                for (let i = 2; i <= Math.sqrt(chislo); i++) {
+                    if (chislo % i === 0) {
+                        return false; // Число не является простым
+                    }
+                }
+                return chislo > 1; // Число является простым, если больше 1
+            }
+            function proveritCeloeChislo(stroka) {
+                const regulyarka = /^-?\d+$/;
+                return regulyarka.test(stroka);
+            }
+            knopka.addEventListener("click", function () {
+                const vvedenayaStroka = poleVvoda.value;
+                if (proveritCeloeChislo(vvedenayaStroka)) {
+                    const chislo = parseInt(poleVvoda.value)
+                    if (proveritProstoe(chislo)) {
+                        poleVvoda.classList.add("green")
+                    } else {
+                        poleVvoda.classList.add("blue")
+                    }
+                } else {
+                    poleVvoda.classList.add("red")
+                }
+            });
+            poleVvoda.addEventListener('input', function () {
+                poleVvoda.className = "";
+                poleVvoda.classList.add('normal');
+            });
+        </script>
+    
+    </body>
+</html>

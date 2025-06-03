@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <style>
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #000;
+            margin: 20px 0;
+            background-color: #ffffff;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Color Picker</h2>
+        <input type="text" id="colorInput" placeholder="Enter hex color (#RRGGBB)">
+        <select id="colorSelect">
+            <option value="">Select a color</option>
+            <option value="#ff0000">Red</option>
+            <option value="#00ff00">Green</option>
+            <option value="#0000ff">Blue</option>
+            <option value="#ffff00">Yellow</option>
+            <option value="#ff00ff">Magenta</option>
+        </select>
+        <button id="applyColor">Apply Color</button>
+        <div id="colorBox"></div>
+    </div>
+
+    <script>
+        document.getElementById('applyColor').addEventListener('click', function () {
+            const colorInput = document.getElementById('colorInput').value.trim();
+            const colorSelect = document.getElementById('colorSelect').value;
+            const colorBox = document.getElementById('colorBox');
+
+            // Check if input is valid hex color
+            const hexRegex = /^#([0-9A-F]{3}){1,2}$/i;
+            const isValidHex = hexRegex.test(colorInput);
+
+            // Use input if valid, otherwise use dropdown selection
+            const colorToApply = isValidHex ? colorInput :
+                (colorSelect || '#23AF22'); // default to white if nothing selected
+
+            colorBox.style.backgroundColor = colorToApply;
+        });
+    </script>
+</body>
+</html>
